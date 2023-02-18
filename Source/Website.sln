@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{2AA1A37A-7289-4992-9E4A-3DE47308A4AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Website.API", "API\Website.API\Website.API.csproj", "{35D91F0F-568B-4A1E-98D0-25932B3BFF87}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{9D4E0CAD-016B-4CA5-9D39-30FE0CFF99BC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Model", "Model", "{F4E41C0E-0C45-4BBC-85DE-52B1A7CC839B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Website.Common.Model", "Common\Model\Website.Common.Model\Website.Common.Model.csproj", "{C00CFDCD-944D-42A6-BE96-E85EF2EAE9AD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{35D91F0F-568B-4A1E-98D0-25932B3BFF87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35D91F0F-568B-4A1E-98D0-25932B3BFF87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35D91F0F-568B-4A1E-98D0-25932B3BFF87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35D91F0F-568B-4A1E-98D0-25932B3BFF87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C00CFDCD-944D-42A6-BE96-E85EF2EAE9AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C00CFDCD-944D-42A6-BE96-E85EF2EAE9AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C00CFDCD-944D-42A6-BE96-E85EF2EAE9AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C00CFDCD-944D-42A6-BE96-E85EF2EAE9AD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{35D91F0F-568B-4A1E-98D0-25932B3BFF87} = {2AA1A37A-7289-4992-9E4A-3DE47308A4AB}
+		{F4E41C0E-0C45-4BBC-85DE-52B1A7CC839B} = {9D4E0CAD-016B-4CA5-9D39-30FE0CFF99BC}
+		{C00CFDCD-944D-42A6-BE96-E85EF2EAE9AD} = {F4E41C0E-0C45-4BBC-85DE-52B1A7CC839B}
+	EndGlobalSection
+EndGlobal
