@@ -18,7 +18,8 @@ jobs:
         dotnet-version: '${{ env.DOTNET_VERSION }}'
     - run: dotnet build
       working-directory: Source
-    - run: echo '${{ steps.build-BE.outputs.dotnet-version }}'
+    - name: '.NET Version'
+      run: echo '${{ steps.build-BE.outputs.dotnet-version }}'
   test-BE:
     if: github.event.pull_request.draft == false
     runs-on: ${{ vars.UBUNTU_VERSION }}
