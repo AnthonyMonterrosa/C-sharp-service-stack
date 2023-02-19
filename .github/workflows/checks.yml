@@ -19,3 +19,20 @@ jobs:
       working-directory: Source
     - name: '.NET Version'
       run: echo '${{ steps.build-solution.outputs.dotnet-version }}'
+  run-tests:
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-dotnet@v3
+      id: run-tests
+      env:
+        DOTNET_NOLOGO: true
+      with:
+        dotnet-version: '7.0.x'
+    - run: dotnet build
+      working-directory: Source
+    - run: dotnet test
+    - name: '.NET Version'
+      run: echo '${{ steps.run-tests.outputs.dotnet-version }}'
+      
