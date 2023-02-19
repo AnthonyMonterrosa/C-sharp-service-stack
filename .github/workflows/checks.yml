@@ -18,13 +18,13 @@ jobs:
         DOTNET_NOLOGO: true
       id: BE
     - name: '.NET Restore'
-      run: dotnet restore
+      run: dotnet restore --verbosity normal
       working-directory: Source
     - name: '.NET Build'
-      run: dotnet build --no-restore --verbosity diagnostic
+      run: dotnet build --no-restore --verbosity normal
       working-directory: Source
     - name: '.NET Test'
-      run: dotnet test --no-restore --verbosity diagnostic
+      run: dotnet test --no-restore --verbosity normal
       working-directory: Source
     - name: 'Version Info'
       run: echo '.NET version ${{ steps.BE.outputs.dotnet-version }}'
