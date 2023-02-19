@@ -1,0 +1,13 @@
+name: Build C# Solution
+
+on: pull_request
+
+jobs:
+  build:
+    runs-on: ubuntu-latst
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-dotnet@v3
+    with:
+      dotnet-version: '7.0.x'
+    - run: dotnet build <my project>
