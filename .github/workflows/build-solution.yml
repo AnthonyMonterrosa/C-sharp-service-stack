@@ -13,3 +13,5 @@ jobs:
         dotnet-version: '7.0.x'
     - run: dotnet build
       working-directory: Source
+    - name: '.NET Version'
+      run: echo '${{ steps.stepid.outputs.dotnet-version }}'
