@@ -5,12 +5,13 @@ on:
     types: [ready_for_review, synchronize]
     
 env:
+  UBUNTU_VERSION: '22.04'
   DOTNET_VERSION: '7.0.x'
 
 jobs:
   build-BE:
     if: github.event.pull_request.draft == false
-    runs-on: ubuntu-22.04
+    runs-on: 'ubuntu-${{ env.UBUNTU_VERSION }}'
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-dotnet@v3
@@ -25,7 +26,7 @@ jobs:
       run: echo '${{ steps.build-BE.outputs.dotnet-version }}'
   test-BE:
     if: github.event.pull_request.draft == false
-    runs-on: ubuntu-22.04
+    runs-on: 'ubuntu-${{ env.UBUNTU_VERSION }}'
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-dotnet@v3
