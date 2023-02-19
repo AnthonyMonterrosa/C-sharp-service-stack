@@ -16,10 +16,9 @@ jobs:
         DOTNET_NOLOGO: true
       with:
         dotnet-version: '${{ env.DOTNET_VERSION }}'
-    - run: |
-        dotnet build
-        echo '.NET version: ${{ steps.build-BE.outputs.dotnet-version }}'
+    - run: dotnet build
       working-directory: Source
+    - run: echo '.NET Version ${{ steps.build-BE.outputs.dotnet-version }}'
   test-BE:
     if: github.event.pull_request.draft == false
     runs-on: ${{ vars.UBUNTU_VERSION }}
