@@ -17,6 +17,9 @@ jobs:
       env:
         DOTNET_NOLOGO: true
       id: BE
+    - name: '.NET Format Validation'
+      run: dotnet format --verify-no-changes
+      working-directory: Source
     - name: '.NET Restore'
       run: dotnet restore --verbosity minimal
       working-directory: Source
