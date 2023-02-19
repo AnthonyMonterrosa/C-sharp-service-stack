@@ -11,7 +11,7 @@ env:
 jobs:
   build-BE:
     if: github.event.pull_request.draft == false
-    runs-on: ${{ format('ubuntu-{1}', env.UBUNTU_VERSION) }}
+    runs-on: ${{ format('ubuntu-{1}', ${{ env.UBUNTU_VERSION }})}}
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-dotnet@v3
@@ -26,7 +26,7 @@ jobs:
       run: echo '${{ steps.build-BE.outputs.dotnet-version }}'
   test-BE:
     if: github.event.pull_request.draft == false
-    runs-on: ${{ format('ubuntu-{1}', env.UBUNTU_VERSION) }}
+    runs-on: ${{ format('ubuntu-{1}', ${{ env.UBUNTU_VERSION }})}}
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-dotnet@v3
