@@ -18,14 +18,14 @@ jobs:
       with:
         dotnet-version: '${{ vars.DOTNET_VERSION }}'
     - name: '.NET Restore'
-    - run: dotnet restore
+      run: dotnet restore
       working-directory: Source
     - name: '.NET Build'
-    - run: dotnet build
+      run: dotnet build
       working-directory: Source
     - name: '.NET Test'
-    - run: dotnet test
+      run: dotnet test
       working-directory: Source
     - name: 'Version Info'
-    - run: echo '.NET version ${{ steps.BE.outputs.dotnet-version }}'
+      run: echo '.NET version ${{ steps.BE.outputs.dotnet-version }}'
       
