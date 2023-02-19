@@ -15,7 +15,7 @@ jobs:
       env:
         DOTNET_NOLOGO: true
       with:
-        dotnet-version: '${{ env.DOTNET_VERSION }}'
+        dotnet-version: '${{ vars.DOTNET_VERSION }}'
     - run: dotnet build
       working-directory: Source
     - name: '.NET Version'
@@ -30,7 +30,7 @@ jobs:
       env:
         DOTNET_NOLOGO: true
       with:
-        dotnet-version: '${{ env.DOTNET_VERSION }}'
+        dotnet-version: '${{ vars.DOTNET_VERSION }}'
     - run: dotnet build
       working-directory: Source
     - run: dotnet test
