@@ -18,7 +18,7 @@ jobs:
         dotnet-version: '${{ env.DOTNET_VERSION }}'
     - run: |
         dotnet build
-        echo '.NET version: ' '${{ steps.build-BE.outputs.dotnet-version }}'
+        echo '.NET version: ${{ steps.build-BE.outputs.dotnet-version }}'
       working-directory: Source
   test-BE:
     if: github.event.pull_request.draft == false
