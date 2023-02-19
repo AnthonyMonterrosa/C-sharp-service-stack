@@ -237,3 +237,6 @@ dotnet_diagnostic.CA1822.severity = none
 
 ## Don't require an accessibility keyword (interfaces shouldn't use them).
 dotnet_diagnostic.IDE0036.severity = none
+
+## Remove trailing whitespace.
+trim_trailing_whitespace = true
