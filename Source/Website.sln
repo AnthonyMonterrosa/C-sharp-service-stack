@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{2AA1A37A-7289-4992-9E4A-3DE47308A4AB}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Website.API", "API\Website.API\Website.API.csproj", "{35D91F0F-568B-4A1E-98D0-25932B3BFF87}"
 EndProject
@@ -13,7 +16,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Model", "Model", "{F4E41C0E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Website.Common.Model", "Common\Model\Website.Common.Model\Website.Common.Model.csproj", "{C00CFDCD-944D-42A6-BE96-E85EF2EAE9AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Website.API.Test.Unit", "Website.API.Test.Unit\Website.API.Test.Unit.csproj", "{532AA51F-3647-4C6B-9B86-C249B98176F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Website.API.Test.Unit", "Website.API.Test.Unit\Website.API.Test.Unit.csproj", "{532AA51F-3647-4C6B-9B86-C249B98176F7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{056DAD50-F8D9-498D-BD39-BC17AA33D768}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
