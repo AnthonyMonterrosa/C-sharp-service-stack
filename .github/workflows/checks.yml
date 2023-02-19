@@ -9,7 +9,6 @@ jobs:
     if: github.event.pull_request.draft == false
     runs-on: ${{ vars.UBUNTU_VERSION }}
     steps:
-    - id: BE
     - uses: actions/checkout@v3
     - name: 'Setup .NET Core'
       uses: actions/setup-dotnet@v3
@@ -17,6 +16,7 @@ jobs:
         dotnet-version: '${{ vars.DOTNET_VERSION }}'
       env:
         DOTNET_NOLOGO: true
+      id: BE
     - name: '.NET Restore'
       run: dotnet restore
       working-directory: Source
