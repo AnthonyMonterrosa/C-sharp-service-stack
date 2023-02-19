@@ -2,7 +2,7 @@ name: PR Checks
 
 on:
   pull_request:
-    types: [ready_for_review, synchronize]
+    types: [ready_for_review, synchronize, opened, reopened]
 
 jobs:
   BE:
@@ -18,14 +18,16 @@ jobs:
         DOTNET_NOLOGO: true
       id: BE
     - name: '.NET Restore'
-      run: dotnet restore
+      run: dotnet restore --verbosity minimal
       working-directory: Source
     - name: '.NET Build'
-      run: dotnet build
+      run: dotnet build --no-restore --verbosity minimal
       working-directory: Source
     - name: '.NET Test'
-      run: dotnet test
+      run: dotnet test --no-restore --verbosity minimal
       working-directory: Source
     - name: 'Version Info'
       run: echo '.NET version ${{ steps.BE.outputs.dotnet-version }}'
+    - name: 'OS Info'
+      run: echo 'OS ${{ vars.UBUNTU_VERSION }}'
       
