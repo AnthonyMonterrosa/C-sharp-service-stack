@@ -10,31 +10,22 @@ jobs:
     runs-on: ${{ vars.UBUNTU_VERSION }}
     steps:
     - uses: actions/checkout@v3
+    - name: 'Setup .NET Core'
     - uses: actions/setup-dotnet@v3
       id: build-BE
       env:
         DOTNET_NOLOGO: true
       with:
         dotnet-version: '${{ vars.DOTNET_VERSION }}'
-    - run: |
-        dotnet build
-        echo '.NET version: ${{ steps.build-BE.outputs.dotnet-version }}'
+    - name: '.NET Restore'
+    - run: dotnet restore
       working-directory: Source
-  test-BE:
-    if: github.event.pull_request.draft == false
-    runs-on: ${{ vars.UBUNTU_VERSION }}
-    steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-dotnet@v3
-      id: test-BE
-      env:
-        DOTNET_NOLOGO: true
-      with:
-        dotnet-version: '${{ vars.DOTNET_VERSION }}'
+    - name: '.NET Build'
     - run: dotnet build
       working-directory: Source
+    - name: '.NET Test'
     - run: dotnet test
       working-directory: Source
-    - name: '.NET Version'
-      run: echo '${{ steps.test-BE.outputs.dotnet-version }}'
+    - name: 'Version Info'
+    - run: echo '.NET version: ${{ steps.build-BE.outputs.dotnet-version }}'
       
