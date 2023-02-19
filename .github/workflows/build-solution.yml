@@ -12,3 +12,4 @@ jobs:
       with:
         dotnet-version: '7.0.x'
     - run: dotnet build
+      working-directory: Source
