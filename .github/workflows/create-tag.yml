@@ -21,7 +21,7 @@ jobs:
     - name: 'Increment Version Number'
       id: increment-version-number
       run: |
-        export NUMBER_TO_BUMP=${{ steps.get-latest-tag.outputs.tag }} | cut -d "." -f ${{ steps.get-latest-tag.outputs.bump-index }}
+        export NUMBER_TO_BUMP=$(${{ steps.get-latest-tag.outputs.tag }} | cut -d "." -f ${{ steps.get-latest-tag.outputs.bump-index }})
         export NEW_VERSION_NUMBER=$(echo $NUMBER_TO_BUMP + 1 | bc)
         echo "$NEW_VERSION_NUMBER"
         echo "new-version-number=$NEW_VERSION_NUMBER" >> $GITHUB_OUTPUT
