@@ -1,8 +1,9 @@
 name: Branch Pipeline
 
 on:
-  pull_request:
-    types: [ready_for_review, synchronize, opened, reopened]
+  pull_request_target:
+    types: [opened, reopened]
+    branches: [test, production]
 
 jobs:
   Valid-Target-Branch :
