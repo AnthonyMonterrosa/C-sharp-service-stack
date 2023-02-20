@@ -2,7 +2,7 @@ name: Branch Pipeline
 
 on:
   pull_request:
-    types: [opened, reopened, synchronize, edited]
+    types: [opened, reopened, edited]
   pull_request_target:
     branches: [test, production]
 
