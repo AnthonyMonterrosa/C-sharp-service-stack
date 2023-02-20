@@ -14,5 +14,5 @@ jobs:
       id: create
     - name: Determine Bump Type
       run: |
-        git rev-list --tags --max-count 1
+        echo $(git describe --tags $(git rev-list --tags --max-count=1))
     
