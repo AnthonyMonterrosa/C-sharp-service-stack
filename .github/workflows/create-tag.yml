@@ -6,15 +6,15 @@ on:
     branches: [production]
   
 jobs:
-  Create-Tag:
+  create:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-      id: Create-Tag
+      id: create
     - name: Bump and Push Tag
       uses: laputansoft/github-tag-action@v4.6
       with:
         github_token: ${{ secrets.ACTION_TOKEN }}
         default_bump: ${{ vars.BUMP_TYPE }}
     - name: 'Tag Info'
-      run: echo 'New Tag ${{ steps.create-tag.outputs.new_tag }}'
+      run: echo 'New Tag ${{ steps.create.outputs.new_tag }}'
