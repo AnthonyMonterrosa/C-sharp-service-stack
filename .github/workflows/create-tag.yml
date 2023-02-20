@@ -2,7 +2,7 @@ name: Create Release Tag
 
 on:
   push:
-    branches: [production, issue-17-create-releases-on-production-pushes]
+    branches: [main]
   
 jobs:
   create:
