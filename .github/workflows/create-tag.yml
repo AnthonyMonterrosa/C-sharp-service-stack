@@ -12,26 +12,27 @@ jobs:
       with:
         fetch-depth: 0
       name: 'Get Latest Tag'
+      id: get-latest-tag
     - run: |
-        export LATEST_TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
-        echo "$LATEST_TAG"
+        export TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
+        echo "TAG=$TAG" >> $GITHUB_OUTPUT
     - if: vars.BUMP_TYPE == 'Major'
       name: 'Bump Type: Major'
       env:
         BUMP_INDEX: 1
       run: |
-        echo $LATEST_TAG | cut -d "." -f $BUMP_INDEX
+        echo ${{ steps.get-latest-tag.outputs.tag }} | cut -d "." -f $BUMP_INDEX
     - if: vars.BUMP_TYPE == 'Minor'
       name: 'Bump Type: Minor'
       env:
         BUMP_INDEX: 2
       run: |
-        echo $LATEST_TAG | cut -d "." -f $BUMP_INDEX
+        echo ${{ steps.get-latest-tag.outputs.tag }} | cut -d "." -f $BUMP_INDEX
     - if: vars.BUMP_TYPE == 'Patch'
       name: 'Bump Type: Patch'
       env:
         BUMP_INDEX: 3
       run: |
-        echo $LATEST_TAG | cut -d "." -f $BUMP_INDEX
+        echo ${{ steps.get-latest-tag.outputs.tag }} | cut -d "." -f $BUMP_INDEX
         
     
