@@ -12,7 +12,7 @@ jobs:
     steps:
     - name: 'Info'
       run: |
-        echo '${{ github.event.changes }}'
+        echo '${{ github.event.changes.base.ref.from }}'
     - if: (github.base_ref == 'production' && github.head_ref != 'test') || (github.base_ref == 'test' && github.head_ref != 'main')
       name: 'Invalid PR Target'
       run: exit 1
