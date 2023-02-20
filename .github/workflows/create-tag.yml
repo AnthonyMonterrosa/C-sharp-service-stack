@@ -35,6 +35,7 @@ jobs:
     - name: 'Create New Version Tag'
       run: |
         export NEW_TAG=$(echo "${{ steps.increment-version-number.outputs.new-major }}.${{ steps.increment-version-number.outputs.new-minor }}.${{ steps.increment-version-number.outputs.new-patch }}")
-        echo "$NEW_TAG"
+        git tag -a $NEW_TAG
+        git push
         
     
