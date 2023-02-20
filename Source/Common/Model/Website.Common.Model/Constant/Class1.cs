@@ -2,5 +2,5 @@
 
 public interface IConstant
 {
-	static abstract void AbstractInterfaceMethod();
+	static abstract void AbstractInterfaceMethod1();
 }
