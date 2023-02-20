@@ -16,7 +16,7 @@ jobs:
     - run: |
         export TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
         echo "$TAG"
-        echo "tag=$TAG" >> $GITHUB_OUTPUT
+        echo "tag=$(git describe --tags $(git rev-list --tags --max-count=1))" >> $GITHUB_OUTPUT
     - if: vars.BUMP_TYPE == 'Major'
       name: 'Bump Type: Major'
       env:
