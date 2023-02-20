@@ -9,8 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    env:
-      BUMP_TYPE: 'Patch'
+      env:
+        BUMP_TYPE: 'Patch'
     - if: vars.MINOR_BUMP == true
       env:
         BUMP_TYPE: 'Minor'
