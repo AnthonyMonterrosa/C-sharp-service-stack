@@ -9,4 +9,8 @@ jobs:
     runs-on: ${{ vars.UBUNTU_VERSION }}
     steps:
     - if: (github.head_ref == 'production' && github.base_ref != 'test') || (github.head_ref == 'test' && github.base_ref != 'main')
+      name: 'Validate PR Target'
       run: exit 1
+    - if: (github.head_ref == 'production' && github.base_ref != 'test') || (github.head_ref == 'test' && github.base_ref != 'main')
+      name: 'Validate PR Target'
+      run: exit 0
