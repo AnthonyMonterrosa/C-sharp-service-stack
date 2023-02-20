@@ -14,6 +14,5 @@ jobs:
       id: create
     - name: Determine Bump Type
       run: |
-        export LATEST_TAG=2
-        git rev-list --tags --max-count=2
+        git rev-list --max-count 1
     
