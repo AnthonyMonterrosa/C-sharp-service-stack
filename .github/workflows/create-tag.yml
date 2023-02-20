@@ -15,5 +15,5 @@ jobs:
     - name: Determine Bump Type
       run: |
         export LATEST_TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
-        echo "LATEST_TAG: $LATEST_TAG"
+        git rev-list --tags --max-count=2
     
