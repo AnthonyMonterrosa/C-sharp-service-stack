@@ -10,6 +10,10 @@ jobs:
   Valid-Target-Branch :
     runs-on: ${{ vars.UBUNTU_VERSION }}
     steps:
+    - name: 'Info'
+      run: |
+        echo '${{ github.head_ref }}'
+        echo '${{ github.base_ref }}'
     - if: (github.head_ref == 'production' && github.base_ref != 'test') || (github.head_ref == 'test' && github.base_ref != 'main')
       name: 'Invalid PR Target'
       run: exit 1
