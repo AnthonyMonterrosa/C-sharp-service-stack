@@ -14,20 +14,20 @@ jobs:
     - run: |
         export LATEST_TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
         echo "$LATEST_TAG"
-    - if: vars.BUMP_TYPE == Major
+    - if: vars.BUMP_TYPE == 'Major'
       env:
         BUMP_INDEX: 1
       run: |
-        echo '${{ env.BUMP_INDEX }}'
-    - if: vars.BUMP_TYPE == Minor
+        echo "${{ env.BUMP_INDEX }}"
+    - if: vars.BUMP_TYPE == 'Minor'
       env:
         BUMP_INDEX: 2
       run: |
-        echo '${{ env.BUMP_INDEX }}'
-    - if: vars.BUMP_TYPE == Patch
+        echo "${{ env.BUMP_INDEX }}"
+    - if: vars.BUMP_TYPE == 'Patch'
       env:
         BUMP_INDEX: 3
       run: |
-        echo '${{ env.BUMP_INDEX }}'
+        echo "${{ env.BUMP_INDEX }}"
         
     
