@@ -1,0 +1,15 @@
+name: Branch Pipeline
+
+on:
+  pull_request:
+    types: [opened, reopened, edited]
+  pull_request_target:
+    branches: [test, production]
+
+jobs:
+  Valid-Target-Branch :
+    runs-on: ${{ vars.UBUNTU_VERSION }}
+    steps:
+    - if: (github.base_ref == 'production' && github.head_ref != 'test') || (github.base_ref == 'test' && github.head_ref != 'main')
+      name: 'Invalid PR Target'
+      run: exit 1
