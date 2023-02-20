@@ -18,8 +18,12 @@ jobs:
         echo "tag=$TAG" >> $GITHUB_OUTPUT
         export BUMP_INDEX=$([ "${{ vars.BUMP_TYPE }}" = "major" ] && echo "1" || ([ "${{ vars.BUMP_TYPE }}" = "minor" ] && echo "2" || echo "3"))
         echo "bump-index=$BUMP_INDEX" >> $GITHUB_OUTPUT
-    - name: 'Get Number to Bump'
+    - name: 'Increment Version Number'
+      id: increment-version-number
       run: |
-        echo ${{ steps.get-latest-tag.outputs.tag }} | cut -d "." -f ${{ steps.get-latest-tag.outputs.bump-index }} 
+        export NUMBER_TO_BUMP=${{ steps.get-latest-tag.outputs.tag }} | cut -d "." -f ${{ steps.get-latest-tag.outputs.bump-index }}
+        export NEW_VERSION_NUMBER=$(echo $NUMBER_TO_BUMP + 1 | bc)
+        echo "$NEW_VERSION_NUMBER"
+        echo "new-version-number=$NEW_VERSION_NUMBER" >> $GITHUB_OUTPUT
         
     
