@@ -9,10 +9,9 @@ jobs:
   Create-Tag:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v3
     - name: Bump and Push Tag
       uses: laputansoft/github-tag-action@v4.6
       with:
         github_token: ${{ secrets.ACTION_TOKEN }}
         default_bump: ${{ vars.BUMP_TYPE }}
-        dry_run: true
