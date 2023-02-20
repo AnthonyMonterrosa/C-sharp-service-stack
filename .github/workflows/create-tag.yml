@@ -11,20 +11,23 @@ jobs:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
+    - run: |
+        export LATEST_TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
+        echo "$LATEST_TAG"
     - if: vars.BUMP_TYPE == Major
       env:
         BUMP_INDEX: 1
+      run: |
+        echo '${{ env.BUMP_INDEX }}'
     - if: vars.BUMP_TYPE == Minor
       env:
         BUMP_INDEX: 2
+      run: |
+        echo '${{ env.BUMP_INDEX }}'
     - if: vars.BUMP_TYPE == Patch
       env:
         BUMP_INDEX: 3
-      id: create
-    - name: Determine Bump Type
       run: |
-        export LATEST_TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
-        echo "$LATEST_TAG"
         echo '${{ env.BUMP_INDEX }}'
         
     
