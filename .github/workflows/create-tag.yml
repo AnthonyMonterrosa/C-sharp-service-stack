@@ -23,7 +23,18 @@ jobs:
       run: |
         export NUMBER_TO_BUMP=$(echo "${{ steps.get-latest-tag.outputs.tag }}" | cut -d "." -f ${{ steps.get-latest-tag.outputs.bump-index }})
         export NEW_VERSION_NUMBER=$(echo $NUMBER_TO_BUMP + 1 | bc)
-        echo "$NEW_VERSION_NUMBER"
-        echo "new-version-number=$NEW_VERSION_NUMBER" >> $GITHUB_OUTPUT
+        export OLD_MAJOR=$(echo "${{ steps.get-latest-tag.outputs.tag }}" | cut -d "." -f 1)
+        export OLD_MINOR=$(echo "${{ steps.get-latest-tag.outputs.tag }}" | cut -d "." -f 2)
+        export OLD_PATCH=$(echo "${{ steps.get-latest-tag.outputs.tag }}" | cut -d "." -f 2)
+        export NEW_MAJOR=$([ "${{ vars.BUMP_TYPE }}" = "major" ] && echo "$NEW_VERSION_NUMBER" || echo "$OLD_MAJOR")
+        export NEW_MINOR=$([ "${{ vars.BUMP_TYPE }}" = "minor" ] && echo "$NEW_VERSION_NUMBER" || echo "$OLD_MINOR")
+        export NEW_PATCH=$([ "${{ vars.BUMP_TYPE }}" = "patch" ] && echo "$NEW_VERSION_NUMBER" || echo "$OLD_PATCH")
+        echo "new-major=$NEW_MAJOR" >> $GITHUB_OUTPUT
+        echo "new-minor=$NEW_MINOR" >> $GITHUB_OUTPUT
+        echo "new-patch=$NEW_PATCH" >> $GITHUB_OUTPUT
+    - name: 'Create New Version Tag'
+      run: |
+        export NEW_TAG=$(echo "${{ steps.increment-version-number.outputs.new-major }}.${{ steps.increment-version-number.outputs.new-minor }}.${{ steps.increment-version-number.outputs.new-patch }}")
+        echo "$NEW_TAG"
         
     
