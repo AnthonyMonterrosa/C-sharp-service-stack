@@ -1,4 +1,4 @@
-name: Create Release   Tag
+name: Create Release Tag
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
   
 jobs:
   create:
-    runs-on: ubuntu-latest
+    runs-on: ${{ vars.UBUNTU_VERSION }}
     steps:
     - uses: actions/checkout@v3
       with:
@@ -17,24 +17,9 @@ jobs:
         export TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
         echo "tag=$TAG" >> $GITHUB_OUTPUT
         export BUMP_INDEX=$([ "${{ vars.BUMP_TYPE }}" = "major" ] && echo "1" || ([ "${{ vars.BUMP_TYPE }}" = "minor" ] && echo "2" || echo "3"))
-        echo "$BUMP_INDEX"
-    - if: vars.BUMP_TYPE == 'Major'
-      name: 'Bump Type: Major'
-      env:
-        BUMP_INDEX: 1
+        echo "bump-index=$BUMP_INDEX" >> $GITHUB_OUTPUT
+    - name: 'Get Number to Bump'
       run: |
-        echo ${{ steps.get-latest-tag.outputs.tag }} | cut -d "." -f $BUMP_INDEX
-    - if: vars.BUMP_TYPE == 'Minor'
-      name: 'Bump Type: Minor'
-      env:
-        BUMP_INDEX: 2
-      run: |
-        echo ${{ steps.get-latest-tag.outputs.tag }} | cut -d "." -f $BUMP_INDEX
-    - if: vars.BUMP_TYPE == 'Patch'
-      name: 'Bump Type: Patch'
-      env:
-        BUMP_INDEX: 3
-      run: |
-        echo ${{ steps.get-latest-tag.outputs.tag }} | cut -d "." -f $BUMP_INDEX
+        echo ${{ steps.get-latest-tag.outputs.tag }} | cut -d "." -f ${{ steps.get-latest-tag.outputs.bump-index }} 
         
     
