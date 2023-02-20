@@ -1,9 +1,8 @@
 name: Create Release Tag
 
 on:
-  pull_request:
   push:
-    branches: [production]
+    branches: [production, issue-17-create-releases-on-production-pushes]
   
 jobs:
   create:
