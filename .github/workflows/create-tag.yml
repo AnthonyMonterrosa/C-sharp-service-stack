@@ -11,24 +11,24 @@ jobs:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
-    - name: 'Get Latest Tag'
+      name: 'Get Latest Tag'
     - run: |
         export LATEST_TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
         echo "$LATEST_TAG"
     - if: vars.BUMP_TYPE == 'Major'
-    - name: 'Bump Type: Major'
+      name: 'Bump Type: Major'
       env:
         BUMP_INDEX: 1
       run: |
         echo $LATEST_TAG | cut -d "." -f $BUMP_INDEX
     - if: vars.BUMP_TYPE == 'Minor'
-    - name: 'Bump Type: Minor'
+      name: 'Bump Type: Minor'
       env:
         BUMP_INDEX: 2
       run: |
         echo $LATEST_TAG | cut -d "." -f $BUMP_INDEX
     - if: vars.BUMP_TYPE == 'Patch'
-    - name: 'Bump Type: Patch'
+      name: 'Bump Type: Patch'
       env:
         BUMP_INDEX: 3
       run: |
