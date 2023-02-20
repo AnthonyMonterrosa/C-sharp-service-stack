@@ -9,16 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-      env:
-        BUMP_TYPE: Patch
-    - if: vars.MINOR_BUMP == true
-      env:
-        BUMP_TYPE: Minor
-    - if: vars.MAJOR_BUMP == true
-      env:
-        BUMP_TYPE: Major
     - name: Bump and Push Tag
-    - uses: laputansoft/github-tag-action@v4.6
+      uses: laputansoft/github-tag-action@v4.6
       with:
         github_token: ${{ secrets.ACTION_TOKEN }}
-        default_bump: ${{ env.BUMP_TYPE }}
+        default_bump: ${{ vars.BUMP_TYPE }}
