@@ -14,5 +14,5 @@ jobs:
       id: create
     - name: Determine Bump Type
       run: |
-        git rev-list --max-count 1
+        git rev-list --all --max-count 1
     
