@@ -1,0 +1,12 @@
+name: Branch Pipeline
+
+on:
+  pull_request:
+    types: [ready_for_review, synchronize, opened, reopened]
+
+jobs:
+  Valid-Target-Branch :
+    if: (github.head_ref == 'production' && github.base_ref != 'test') || (github.head_ref == 'test' && github.base_ref != 'main')
+    runs-on: ${{ vars.UBUNTU_VERSION }}
+    steps:
+      run: exit 1
