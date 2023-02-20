@@ -7,12 +7,12 @@ on:
 jobs:
   create:
     runs-on: ubuntu-latest
-    permissions: 
-      contents: write
     steps:
     - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
       id: create
     - name: Determine Bump Type
       run: |
-        git rev-list --all --max-count 1
+        git rev-list --tags --max-count 1
     
