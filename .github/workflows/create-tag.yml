@@ -11,6 +11,7 @@ jobs:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
+        token: ${{ secrets.ACTIONS_CREATE_TAG_TOKEN }}
     - name: 'Get Latest Tag'
       id: get-latest-tag
       run: |
