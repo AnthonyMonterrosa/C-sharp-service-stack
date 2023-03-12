@@ -8,9 +8,6 @@ COPY ./Source .
 # Restore as distinct layers
 RUN dotnet restore
 
-# Create SSL certificate.
-RUN dotnet dev-certs https -ep /.aspnet/https/aspnetapp.pfx -p "local-password"
-
 # Build and publish a release
 RUN dotnet publish --configuration Debug --output Release
 
@@ -21,16 +18,9 @@ LABEL org.opencontainers.image.source https://github.com/AnthonyMonterrosa/c-sha
 
 WORKDIR /Build
 
-# Copy dotnet build artifacts.
 COPY --from=build /Build/Release .
 
 EXPOSE 5101 5102
-
-# Copy local SSL certificate.
-COPY --from=build /.aspnet/https /
-# Create environment variables for SSL certificate use.
-ENV ASPNETCORE_Kestrel__Certificates__Default__Password "local-password"
-ENV ASPNETCORE_Kestrel__Certificates__Default__Path "/aspnetapp.pfx"
 
 ENV ASPNETCORE_ENVIRONMENT "Development"
 ENTRYPOINT ["dotnet", "Website.API.dll"]
