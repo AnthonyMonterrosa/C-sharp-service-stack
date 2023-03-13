@@ -8,4 +8,3 @@ This repository is my practice sandbox for creating a C# application from the bo
 * Manage artifacts and environments for dev and prod
 
 And whatever else is involved in making a website with a C# backend.
-
