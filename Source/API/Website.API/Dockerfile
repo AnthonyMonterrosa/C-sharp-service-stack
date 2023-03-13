@@ -3,14 +3,11 @@ FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 COPY . /Build
 WORKDIR /Build
 
-RUN ls -la
-
-# Restore as distinct layers
-RUN dotnet restore
-
 # Create SSL certificate.
 RUN dotnet dev-certs https -ep /.aspnet/https/aspnetapp.pfx -p "local-password"
 
+# Restore as distinct layers
+RUN dotnet restore
 # Build and publish a release
 RUN dotnet publish --configuration Debug --output /Release
 
