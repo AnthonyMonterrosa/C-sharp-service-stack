@@ -6,15 +6,15 @@ on:
 
 jobs:
   build:
-    runs-on: {{ vars.UBUNTU_VERSION }}
+    runs-on: ${{ vars.UBUNTU_VERSION }}
     steps:
       - uses: actions/checkout@v3
-      - uses: docker/login-action@v1
+      - uses: docker/login-action@v2
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_PACKAGES_PAT }}
-      - uses: docker/build-push-action@v2
+      - uses: docker/build-push-action@v4
         with:
           context: .
           file: ./Source/API/Website.API/Dockerfile
