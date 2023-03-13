@@ -1,7 +1,6 @@
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 
-COPY . .
-RUN ls -la
+COPY ./Source/API/Webiste.API .
 
 # Restore as distinct layers
 RUN dotnet restore
