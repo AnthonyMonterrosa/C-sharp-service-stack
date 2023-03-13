@@ -1,0 +1,22 @@
+name: Create Docker Image
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  build:
+    runs-on: {{ vars.UBUNTU_VERSION }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_PACKAGES_PAT }}
+      - uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./Source/API/Website.API/Dockerfile
+          push: true
+          tags: ghcr.io/anthonymonterrosa/c-sharp-service-stack:latest
