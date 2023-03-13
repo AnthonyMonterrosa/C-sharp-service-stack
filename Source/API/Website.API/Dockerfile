@@ -1,23 +1,31 @@
-#See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 
-FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
-WORKDIR /app
-EXPOSE 80
+COPY . .
+
+# Restore as distinct layers
+RUN dotnet restore
+
+# Create SSL certificate.
+RUN dotnet dev-certs https -ep /.aspnet/https/aspnetapp.pfx -p "local-password"
+
+# Build and publish a release
+RUN dotnet publish --configuration Debug --output /Release
+
+# Build runtime image
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 as runtime
+
+LABEL org.opencontainers.image.source https://github.com/AnthonyMonterrosa/c-sharp-service-stack
+
+# Copy dotnet build artifacts.
+COPY --from=build /Release .
+
 EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
-WORKDIR /src
-COPY ["API/Website.API/Website.API.csproj", "API/Website.API/"]
-COPY ["Common/Model/Website.Common.Model/Website.Common.Model.csproj", "Common/Model/Website.Common.Model/"]
-RUN dotnet restore "API/Website.API/Website.API.csproj"
-COPY . .
-WORKDIR "/src/API/Website.API"
-RUN dotnet build "Website.API.csproj" -c Release -o /app/build
+# Copy local SSL certificate.
+COPY --from=build /.aspnet/https /
+# Create environment variables for SSL certificate use.
+ENV ASPNETCORE_Kestrel__Certificates__Default__Password "local-password"
+ENV ASPNETCORE_Kestrel__Certificates__Default__Path "/aspnetapp.pfx"
 
-FROM build AS publish
-RUN dotnet publish "Website.API.csproj" -c Release -o /app/publish /p:UseAppHost=false
-
-FROM base AS final
-WORKDIR /app
-COPY --from=publish /app/publish .
+ENV ASPNETCORE_ENVIRONMENT "Development"
 ENTRYPOINT ["dotnet", "Website.API.dll"]
