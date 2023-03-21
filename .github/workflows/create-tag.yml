@@ -39,12 +39,9 @@ jobs:
         GPG_KEY: ${{ secrets.GPG_KEY }}
     - name: Setup git
       run: |
-        git status
-        git --version
-        git config --list
-        git config --local user.email ${{ vars.GIT_CONFIG_EMAIL }}
-        git config --local user.name ${{ vars.GIT_CONFIG_NAME }}
-        git config --local user.signingkey $GPG_KEY_ID
+        git config --local user.email "${{ vars.GIT_CONFIG_EMAIL }}"
+        git config --local user.name "${{ vars.GIT_CONFIG_NAME }}"
+        git config --local user.signingkey "$GPG_KEY_ID"
         git config --local tag.gpgsign true
       env:
         GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
