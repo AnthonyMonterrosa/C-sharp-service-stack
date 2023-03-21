@@ -42,11 +42,10 @@ jobs:
         git status
         git --version
         git config --list
-        git config --list --global
-        git config user.email ${{ vars.GIT_CONFIG_EMAIL }}
-        git config user.name ${{ vars.GIT_CONFIG_NAME }}
-        git config user.signingkey $GPG_KEY_ID
-        git config tag.gpgsign true
+        git config --local user.email ${{ vars.GIT_CONFIG_EMAIL }}
+        git config --local user.name ${{ vars.GIT_CONFIG_NAME }}
+        git config --local user.signingkey $GPG_KEY_ID
+        git config --local tag.gpgsign true
       env:
         GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
     - name: 'Create New Version Tag'
