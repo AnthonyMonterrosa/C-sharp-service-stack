@@ -26,7 +26,7 @@ jobs:
         export NEW_VERSION_NUMBER=$(echo $NUMBER_TO_BUMP + 1 | bc)
         export OLD_MAJOR=$(echo "${{ steps.get-latest-tag.outputs.tag }}" | cut -d "." -f 1)
         export OLD_MINOR=$(echo "${{ steps.get-latest-tag.outputs.tag }}" | cut -d "." -f 2)
-        export OLD_PATCH=$(echo "${{ steps.get-latest-tag.outputs.tag }}" | cut -d "." -f 2)
+        export OLD_PATCH=$(echo "${{ steps.get-latest-tag.outputs.tag }}" | cut -d "." -f 3)
         export NEW_MAJOR=$([ "${{ vars.BUMP_TYPE }}" = "major" ] && echo "$NEW_VERSION_NUMBER" || echo "$OLD_MAJOR")
         export NEW_MINOR=$([ "${{ vars.BUMP_TYPE }}" = "minor" ] && echo "$NEW_VERSION_NUMBER" || echo "$OLD_MINOR")
         export NEW_PATCH=$([ "${{ vars.BUMP_TYPE }}" = "patch" ] && echo "$NEW_VERSION_NUMBER" || echo "$OLD_PATCH")
@@ -34,7 +34,10 @@ jobs:
         echo "new-minor=$NEW_MINOR" >> $GITHUB_OUTPUT
         echo "new-patch=$NEW_PATCH" >> $GITHUB_OUTPUT
     - name: Import GPG key
-      run: echo $GPG_KEY | base64 --decode | gpg --batch --import
+      run: |
+        echo $GPG_KEY
+        echo "$GPG_KEY"
+        echo "$GPG_KEY" | base64 --decode | gpg --batch --import
       env:
         GPG_KEY: ${{ secrets.GPG_KEY }}
     - name: Setup git
