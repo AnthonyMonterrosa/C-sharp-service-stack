@@ -39,11 +39,10 @@ jobs:
         GPG_KEY: ${{ secrets.GPG_KEY }}
     - name: Setup git
       run: |
-        git --version
-        git config --global tag.gpgsign true
-        git config --global user.signingkey $GPG_KEY_ID
         git config --global user.email ${{ vars.GIT_CONFIG_EMAIL }}
         git config --global user.name ${{ vars.GIT_CONFIG_NAME }}
+        git config --global user.signingkey $GPG_KEY_ID
+        git config --global tag.gpgsign true
       env:
         GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
     - name: 'Create New Version Tag'
