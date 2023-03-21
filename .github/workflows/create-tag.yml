@@ -34,18 +34,15 @@ jobs:
         echo "new-minor=$NEW_MINOR" >> $GITHUB_OUTPUT
         echo "new-patch=$NEW_PATCH" >> $GITHUB_OUTPUT
     - name: Import GPG key
-      run: |
-        echo $GPG_KEY
-        echo "$GPG_KEY"
-        echo "$GPG_KEY" | base64 --decode | gpg --batch --import
+      run: echo "$GPG_KEY" | base64 --decode | gpg --batch --import
       env:
         GPG_KEY: ${{ secrets.GPG_KEY }}
     - name: Setup git
       run: |
-        git config commit.gpgsign true
-        git config user.signingkey $GPG_KEY_ID
-        git config user.email ${{ vars.GIT_CONFIG_EMAIL }}
-        git config user.name ${{ vars.GIT_CONFIG_NAME }}
+        git config --global commit.gpgsign true
+        git config --global user.signingkey $GPG_KEY_ID
+        git config --global user.email ${{ vars.GIT_CONFIG_EMAIL }}
+        git config --global user.name ${{ vars.GIT_CONFIG_NAME }}
       env:
         GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
     - name: 'Create New Version Tag'
