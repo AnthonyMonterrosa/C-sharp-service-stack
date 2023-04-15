@@ -5,10 +5,9 @@ on:
 
 jobs:
   create-release:
-    if: github.
+    if: github.event.create.ref_type == 'tag'
     runs-on: ${{ vars.UBUNTU_VERSION }}
-    permissions:
-      contents: write
     steps:
     - uses: actions/checkout@v3
-    - uses: ncipollo/release-action@v1
+      with:
+        
