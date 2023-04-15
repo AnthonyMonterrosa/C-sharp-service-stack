@@ -13,4 +13,4 @@ jobs:
         fetch-depth: 0
         token: ${{ secrets.GITHUB_TOKEN }}
     - name: 'Create Release'
-      run: 'gh release create --tag $(git describe) --verify-tag'
+      run: 'gh release create --verify-tag $(git describe)'
