@@ -12,4 +12,5 @@ jobs:
       with:
         fetch-depth: 0
         token: ${{ secrets.GITHUB_TOKEN }}
+    - name: 'Create Release'
       run: 'gh release --tag $(git describe --tags $(git rev-list --tags --max-count=1))`
