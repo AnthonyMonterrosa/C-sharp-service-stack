@@ -13,4 +13,7 @@ jobs:
         fetch-depth: 0
         token: ${{ secrets.GITHUB_TOKEN }}
     - name: 'Create Release'
-      run: 'gh release --tag $(git describe --tags $(git rev-list --tags --max-count=1)) --verify-tag'
+      run: |
+        'echo ${{ github.event.create.ref_type }}'
+        'exit 1'
+        'gh release create --tag $(git describe) --verify-tag'
