@@ -6,6 +6,7 @@ on:
 jobs:
   create-release:
     if: github.ref_type == 'tag'
+    permissions: write-all
     runs-on: ${{ vars.UBUNTU_VERSION }}
     steps:
     - uses: actions/checkout@v3
