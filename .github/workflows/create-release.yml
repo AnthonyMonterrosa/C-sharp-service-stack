@@ -1,12 +1,11 @@
 name: Create Release
 
 on: 
-  push:
-    tags:
-    - '*.*.*'
+  create
 
 jobs:
   create-release:
+    if: github.
     runs-on: ${{ vars.UBUNTU_VERSION }}
     permissions:
       contents: write
