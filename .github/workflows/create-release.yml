@@ -6,13 +6,14 @@ on:
 jobs:
   create-release:
     if: github.ref_type == 'tag'
-    permissions: write-all
+    permissions:
+      contents: write
     runs-on: ${{ vars.UBUNTU_VERSION }}
     steps:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
-        token: ${{ secrets.ATOMIC_WORKS_CREATE_RELEASE_TOKEN }}
+        token: ${{ secrets.GITHUB_TOKEN }}
     - name: 'Create Release'
       run: 'gh release create --verify-tag $(git describe --tags $(git rev-list --tags --max-count=1))'
     env:
