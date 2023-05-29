@@ -6,6 +6,8 @@ on:
   
 jobs:
   create:
+    permissions:
+      contents: write
     runs-on: ${{ vars.UBUNTU_VERSION }}
     steps:
     - uses: actions/checkout@v3
